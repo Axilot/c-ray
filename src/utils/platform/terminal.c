@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifdef WINDOWS
+#ifdef _WIN32
 #include <Windows.h>
 #include <io.h>
 #else
@@ -22,7 +22,7 @@
 #include "../logging.h"
 
 bool isTeleType(void) {
-#ifdef WINDOWS
+#ifdef _WIN32
 	return _isatty(_fileno(stdout));
 #else
 	return isatty(fileno(stdout));
@@ -50,14 +50,14 @@ void initTerminal() {
 		logr(warning, "Unable to catch SIGINT\n");
 	}
 	//If we're on a reasonable (non-windows) terminal, hide the cursor.
-#ifndef WINDOWS
+#ifndef _WIN32
 	//Disable output buffering
 	setbuf(stdout, NULL);
 	showCursor(false);
 #endif
 	
 	//Configure Windows terminals to handle color escape codes
-#ifdef WINDOWS
+#ifdef _WIN32
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (hOut != INVALID_HANDLE_VALUE) {
 		DWORD dwMode = 0;
@@ -70,7 +70,7 @@ void initTerminal() {
 }
 
 void restoreTerminal() {
-#ifndef WINDOWS
+#ifndef _WIN32
 	showCursor(true);
 #endif
 }
