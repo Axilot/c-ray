@@ -4,7 +4,7 @@
 //
 //  Created by Valtteri on 6.4.2020.
 //  Copyright © 2020 Valtteri Koskivuori. All rights reserved.
-//
+// (Deleteme gpg test)
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -197,7 +197,6 @@ void parseArgs(int argc, char **argv) {
 				setDatabaseInt(g_options, "worker_port", port);
 			}
 		}
-		
 		if (strncmp(argv[i], "-", 1) == 0) {
 			setDatabaseTag(g_options, ++argv[i]);
 		}
