@@ -11,9 +11,6 @@ output/*
 *.mp4
 .clangd
 generated/*
-.gitignore
-build/*
-cmake-build-debug/*
 
 # Heavy HDR files, just include a small one for demo
 input/HDRs/*
